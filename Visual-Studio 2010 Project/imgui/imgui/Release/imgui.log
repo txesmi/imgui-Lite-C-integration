@@ -1,46 +1,7 @@
-﻿Build started 28.09.2019 18:11:53.
-     1>Project "C:\Users\patri\Git\imgui\Visual-Studio 2010 Project\imgui\imgui\imgui.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
-         Creating "Release\imgui.unsuccessfulbuild" because "AlwaysCreate" was specified.
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /IC:\gstudio8\sdk_plugin /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D IMGUI_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt imgui_dll_grouping.cpp
-         imgui_dll_grouping.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\patri\Git\imgui\Visual-Studio 2010 Project\imgui\Release\imgui.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" /LIBPATH:C:\gstudio8\sdk_plugin adll.lib d3d9.lib /MANIFEST /ManifestFile:"Release\imgui.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\patri\Git\imgui\Visual-Studio 2010 Project\imgui\Release\imgui.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\patri\Git\imgui\Visual-Studio 2010 Project\imgui\Release\imgui.lib" /MACHINE:X86 /DLL Release\imgui.obj
-         Release\imgui_demo.obj
-         Release\imgui_dll_button.obj
-         Release\imgui_dll_combi.obj
-         Release\imgui_dll_draw.obj
-         Release\imgui_dll_grouping.obj
-         Release\imgui_dll_layout.obj
-         Release\imgui_dll_popup.obj
-         Release\imgui_dll_system.obj
-         Release\imgui_dll_text.obj
-         Release\imgui_dll_tooltip.obj
-         Release\imgui_dll_window.obj
-         Release\imgui_dll_image.obj
-         Release\imgui_dll_inputs.obj
-         Release\imgui_dll_lists.obj
-         Release\imgui_dll_main.obj
-         Release\imgui_draw.obj
-         Release\imgui_impl_dx9.obj
-         Release\imgui_impl_win32.obj
-         Release\imgui_dll_menu.obj
-         Release\imgui_nodes.obj
-         Release\imgui_dll_plots.obj
-         Release\imgui_dll_sliders.obj
-         Release\imgui_widgets.obj
-            Creating library C:\Users\patri\Git\imgui\Visual-Studio 2010 Project\imgui\Release\imgui.lib and object C:\Users\patri\Git\imgui\Visual-Studio 2010 Project\imgui\Release\imgui.exp
-         Generating code
-         Finished generating code
-         imgui.vcxproj -> C:\Users\patri\Git\imgui\Visual-Studio 2010 Project\imgui\Release\imgui.dll
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\patri\Git\imgui\Visual-Studio 2010 Project\imgui\Release\imgui.dll;#2" /manifest Release\imgui.dll.intermediate.manifest
-       FinalizeBuildStatus:
-         Deleting file "Release\imgui.unsuccessfulbuild".
-         Touching "Release\imgui.lastbuildstate".
-     1>Done Building Project "C:\Users\patri\Git\imgui\Visual-Studio 2010 Project\imgui\imgui\imgui.vcxproj" (build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:05.78
+﻿     Creando biblioteca G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.lib y objeto G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.exp
+  Generando código
+  All 2047 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Generación de código finalizada
+  imgui.vcxproj -> G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll
+  G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll -> G:\3D Game Studio\1 proyectos\2dIsland-imgui\imgui.dll
+  1 archivo(s) copiado(s)
