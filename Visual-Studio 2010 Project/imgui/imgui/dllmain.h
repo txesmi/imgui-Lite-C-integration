@@ -10,7 +10,7 @@
 #define DLL_USE
 #include "adll.h"
 
-#include "misc\freetype\imgui_freetype.h"
+//#include "misc\freetype\imgui_freetype.h"
 #include "imgui.h"
 #include "imgui_impl_dx9.h"
 #include "imgui_impl_win32.h"
