@@ -111,6 +111,7 @@
     <ClCompile Include="imgui_dll_lists.cpp" />
     <ClCompile Include="imgui_dll_main.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_dll_fonts.cpp" />
     <ClCompile Include="imgui_impl_dx9.cpp" />
     <ClCompile Include="imgui_impl_win32.cpp" />
     <ClCompile Include="imgui_dll_menu.cpp" />

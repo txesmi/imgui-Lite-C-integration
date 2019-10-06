@@ -6,10 +6,15 @@
 #include <Knownfolders.h>
 #include <comdef.h> 
 
-
 namespace fs = std::experimental::filesystem;
 
 namespace imgui_helpers {
+	typedef char ansi;
+	typedef wchar_t unicode;
+	typedef char utf8;
+
+	#define UTF8_MAX 1024
+
 	typedef struct FolderContent {
 		char folder[MAX_PATH] = "";
 		char **content = nullptr;
@@ -24,7 +29,6 @@ namespace imgui_helpers {
 		FID_SavedGames,
 		FID_COUNT
 	};
-
 };
 
 using namespace imgui_helpers;
@@ -39,7 +43,13 @@ DLLFUNC var imgui_h_calc_item_width() {
 	return _VAR(_f);
 }
 
-DLLFUNC FolderContent * fsSetPath(FolderContent *_fc, char *_chrPath) {
+DLLFUNC utf8 *imgui_h_UnicodeToUtf8(unicode *_text, int _size) {
+	static utf8 _utf8Text[UTF8_MAX];
+	WideCharToMultiByte(CP_UTF8, NULL, _text, -1, _utf8Text, UTF8_MAX, NULL, NULL);
+	return _utf8Text;
+}
+
+DLLFUNC FolderContent * fsSetPath(FolderContent *_fc, ansi *_chrPath) {
 	fs::path _path = _chrPath;
 	if (fs::is_directory(_path)) {
 		if (_fc == NULL)
@@ -89,7 +99,7 @@ DLLFUNC FolderContent * fsSetPath(FolderContent *_fc, char *_chrPath) {
 	}
 }
 
-DLLFUNC FolderContent * fsSetPathW(FolderContent *_fc, wchar_t *_sRoot, char *_chrPath) {
+DLLFUNC FolderContent * fsSetPathW(FolderContent *_fc, unicode *_sRoot, ansi *_chrPath) {
 	fs::path _root = _sRoot;
 	fs::path _path = _chrPath;
 	if (fs::is_directory(_path)) {
@@ -165,7 +175,7 @@ DLLFUNC long fsGetLogicalDrives() {
 	return (long)GetLogicalDrives();
 }
 
-DLLFUNC var fsPathIsAbsolute(char *_chrPath) {
+DLLFUNC var fsPathIsAbsolute(ansi *_chrPath) {
 	fs::path _path = _chrPath;
 	bool res = _path.is_absolute();
 	return res ? _VAR(1) : _VAR(0);
@@ -197,12 +207,12 @@ DLLFUNC short *fsGetKnownFolderPathW(var _id) {
 	return (short*)_path;
 }
 
-DLLFUNC void fsSetCurrentDirectory(char *_chrPath) {
+DLLFUNC void fsSetCurrentDirectory(ansi *_chrPath) {
 	fs::path _path = _chrPath;
 	fs::current_path(_path);
 }
 
-DLLFUNC bool fsAddFolderW(wchar_t *_sRoot, wchar_t *_sFolder) {
+DLLFUNC bool fsAddFolderW(unicode *_sRoot, unicode *_sFolder) {
 	fs::path _path = _sRoot;
 	if (fs::is_directory(_path)) {
 		_path += _sFolder;
@@ -211,36 +221,4 @@ DLLFUNC bool fsAddFolderW(wchar_t *_sRoot, wchar_t *_sFolder) {
 	} else {
 		return false;
 	}
-}
-
-// "misc/fonts/Roboto-Medium.ttf"
-DLLFUNC ImFont *imgui_h_add_font(char *_chrFont, float _size) {
-	//ImFontConfig font_config;
-	//font_config.OversampleH = 3;
-	//font_config.OversampleV = 3;
-	//font_config.PixelSnapH = 1;
-
-	ImGuiIO& io = ImGui::GetIO();
-//	io.Fonts->AddFontDefault();
-//	ImFont *_font = io.Fonts->AddFontFromFileTTF(_chrFont, _size, NULL, io.Fonts->GetGlyphRangesDefault());
-	ImFont *_font = io.Fonts->AddFontFromFileTTF(_chrFont, _size, NULL, io.Fonts->GetGlyphRangesCyrillic());
-	io.Fonts->Build();
-	//if(_font)
-	//	ImGui::PushFont(_font);
-	return _font;
-}
-
-DLLFUNC void imgui_h_push_font(ImFont* _font) {
-	ImGui::PushFont(_font);
-}
-
-DLLFUNC void imgui_h_pop_font() {
-	ImGui::PopFont();
-}
-
-DLLFUNC void imgui_h_text(wchar_t * _text) {
-	static char _chrText[1024];
-	WideCharToMultiByte(CP_UTF8, NULL, _text, -1, _chrText, 1024, NULL, NULL);
-	ImGui::Text(_chrText);
-
 }
