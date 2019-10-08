@@ -1,11 +1,12 @@
 ﻿  imgui_dll_helpers.cpp
-  imgui_dll_lists.cpp
      Creando biblioteca G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.lib y objeto G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.exp
   Generando código
-  0 of 2073 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  1 of 2196 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    11 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
   imgui.vcxproj -> G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll
   G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll -> G:\3D Game Studio\1 proyectos\2dIsland-imgui\imgui.dll
+  1 archivo(s) copiado(s)
+  G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll -> G:\visual studio\imgui-Lite-C\Lite-C\imgui.dll
   1 archivo(s) copiado(s)

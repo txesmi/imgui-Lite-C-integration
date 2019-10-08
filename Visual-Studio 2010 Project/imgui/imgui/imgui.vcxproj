@@ -63,7 +63,8 @@
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /i /e /s /y /f  "G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll" "G:\3D Game Studio\1 proyectos\2dIsland-imgui"</Command>
+      <Command>xcopy /i /e /s /y /f  "G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll" "G:\3D Game Studio\1 proyectos\2dIsland-imgui"
+xcopy /i /e /s /y /f  "G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll" "G:\visual studio\imgui-Lite-C\Lite-C"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -89,7 +90,8 @@
       </IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /i /e /s /y /f  "G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll" "G:\3D Game Studio\1 proyectos\2dIsland-imgui"</Command>
+      <Command>xcopy /i /e /s /y /f  "G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll" "G:\3D Game Studio\1 proyectos\2dIsland-imgui"
+xcopy /i /e /s /y /f  "G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll" "G:\visual studio\imgui-Lite-C\Lite-C"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -1,0 +1,47 @@
+Log of A8 Engine 8.47.1 run at Tue Oct 08 17:44:07 2019
+proct on Windows NT/2000/XP version 6.2 Build 9200
+Options example_file_browser.c -diag -fxo -tx
+App: C:\Program Files (x86)\GStudio8\acknex.exe in G:\visual studio\imgui-Lite-C\Lite-C\
+
+MM mixer opened
+DSOUND device opened
+DI interface opened
+Start Window opened(c) Conitec - www.3dgamestudio.com
+A8 Engine - Pro Edition V8.47.1 - Mar  9 2016
+Development version
+Registered to: Jose Miguel Rodriguez Chavarri
+
+DI Microsoft PC-joystick driver 4 axes 19 buttons initialized
+Mouse found
+Joystick found
+Digital Audio (S/PDIF) (High Definition Audio Device) opened
+NVIDIA GeForce GTX 660 pure T&L device 1ff9 detected
+D3D device NVIDIA GeForce GTX 660 1ff9 selected.
+imgui.dll opened
+acknet.dll opened
+ackoal.dll opened
+ackphysX.dll opened
+Compiling EXAMPLE_FILE_BROWSER.C - [Esc] to abort........
+PATH imgui_header\........................................... 0.791 sec
+Running EXAMPLE_FILE_BROWSER.C.
+2 objects
+Main started at 2.016
+def_startup started
+D3D_Init Window: 720x480 -> Window: 1x720x480x32
+Video memory found: 4060 MB
+Main loop at 2.064....
+1st frame with 4060 MB at 2.064
+Normal exit at 18.929
+Close level,DLL,objects
+Free input,funcs,panels,defs,syns,views,strings,vars..ok
+Free sounds,bmaps,fonts,hash,defs1,script..ok
+Close dx,multimedia,D3D,engine,nexus..ok
+A8 Engine - Pro Edition V8.47.1 - Mar  9 2016
+(c) Conitec - www.3dgamestudio.com
+Registered to: Jose Miguel Rodriguez Chavarri
+Unfreed: 1091,    , 4 bytes
+Unfreed: 1092,    , 4 bytes
+Unfreed: 1093,    , 4 bytes
+Unfreed: 1094,    , 4 bytes
+Unfreed: 1095,    , 4 bytes
+Close window at 18.973

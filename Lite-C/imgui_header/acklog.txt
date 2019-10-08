@@ -1,0 +1,23 @@
+Log of A8 Engine 8.47.1 run at Tue Oct 08 15:09:08 2019
+proct on Windows NT/2000/XP version 6.2 Build 9200
+Options imgui_helpers.h -diag -fxo -tm
+App: C:\Program Files (x86)\GStudio8\acknex.exe in G:\visual studio\imgui-Lite-C\Lite-C\imgui_header\
+
+MM mixer opened
+DSOUND device opened
+DI interface opened
+Start Window opened(c) Conitec - www.3dgamestudio.com
+A8 Engine - Pro Edition V8.47.1 - Mar  9 2016
+Development version
+Registered to: Jose Miguel Rodriguez Chavarri
+Unknown file format: IMGUI_HELPERS.H
+Error E355: Startup failure
+Program aborted
+Close level,DLL,objects
+Free input,funcs,panels,defs,syns,views,strings,vars..ok
+Free sounds,bmaps,fonts,hash,defs1,script..ok
+Close dx,multimedia,D3D,engine,nexus..ok
+A8 Engine - Pro Edition V8.47.1 - Mar  9 2016
+(c) Conitec - www.3dgamestudio.com
+Registered to: Jose Miguel Rodriguez Chavarri
+Close window at 290679.162
