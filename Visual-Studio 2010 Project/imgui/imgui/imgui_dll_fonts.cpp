@@ -1,5 +1,11 @@
 #include "dllmain.h"
 
+#include <experimental/filesystem>
+#include <filesystem>
+
+namespace fs = std::experimental::filesystem;
+
+
 namespace imgui_fonts {
 	enum GLYPH_RANGE {
 		GLYPH_RANGE_Default,
@@ -15,8 +21,9 @@ namespace imgui_fonts {
 
 using namespace imgui_fonts;
 
-DLLFUNC ImFont *imgui_add_ttf_from_file(char *_chrFont, float _size, var _glyphRangeID) {
+DLLFUNC ImFont *imgui_add_ttf_from_file(char *_chrFont, var _size, var _glyphRangeID) {
 	const ImWchar *_glyphRange = NULL;
+	static const ImWchar icons_ranges[] = { 0xf000, 0xf3ff, 0 };
 
 	ImGuiIO& io = ImGui::GetIO();
 
@@ -30,7 +37,7 @@ DLLFUNC ImFont *imgui_add_ttf_from_file(char *_chrFont, float _size, var _glyphR
 		default:                            _glyphRange = io.Fonts->GetGlyphRangesDefault();
 	}
 
-	return io.Fonts->AddFontFromFileTTF(_chrFont, _size, NULL, _glyphRange);
+	return io.Fonts->AddFontFromFileTTF(_chrFont, _FLOAT(_size), NULL, _glyphRange);
 }
 
 DLLFUNC void imgui_push_font(ImFont* _font) {
@@ -40,5 +47,57 @@ DLLFUNC void imgui_push_font(ImFont* _font) {
 DLLFUNC void imgui_pop_font() {
 	ImGui::PopFont();
 }
+
+DLLFUNC ImFont *imgui_add_ttf_from_file_ranged(char *_chrFont, var _size, var _glyphRangeID) {
+	static const ImWchar icons_ranges[] = { 0xf000, 0xf3ff, 0 };
+
+	ImGuiIO& io = ImGui::GetIO();
+
+	ImVector<ImWchar> _ranges;
+	ImFontAtlas::GlyphRangesBuilder _rangeBuilder;
+//	_rangeBuilder.AddText("Hello world");                        // Add a string (here "Hello world" contains 7 unique characters)
+
+	switch (_INT(_glyphRangeID)) {
+		case GLYPH_RANGE_ChineseFull:       _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesChineseFull()); break;
+		case GLYPH_RANGE_ChineseSimplified: _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesChineseSimplifiedCommon()); break;
+		case GLYPH_RANGE_Cyrillic:          _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesCyrillic()); break;
+		case GLYPH_RANGE_Japanese:          _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesJapanese()); break;
+		case GLYPH_RANGE_Korean:            _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesKorean()); break;
+		case GLYPH_RANGE_Thai:              _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesThai()); break;
+		default:                            _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesDefault());
+	}
+	_rangeBuilder.AddChar(0xE801);                               // Add a specific character
+
+	_rangeBuilder.BuildRanges(&_ranges);                         // Build the final result (ordered ranges with all the unique characters submitted)
+
+	ImFontConfig config;
+//	config.SizePixels = pixel_size;
+	config.OversampleH = config.OversampleV = 1;
+	config.PixelSnapH = true;
+
+	ImFont *_font = io.Fonts->AddFontFromFileTTF(_chrFont, _FLOAT(_size), NULL, _ranges.Data);
+
+
+
+	//const ImWchar *_glyphRange = NULL;
+	//switch (_INT(_glyphRangeID)) {
+	//	case GLYPH_RANGE_ChineseFull:       _glyphRange = io.Fonts->GetGlyphRangesChineseFull(); break;
+	//	case GLYPH_RANGE_ChineseSimplified: _glyphRange = io.Fonts->GetGlyphRangesChineseSimplifiedCommon(); break;
+	//	case GLYPH_RANGE_Cyrillic:          _glyphRange = io.Fonts->GetGlyphRangesCyrillic(); break;
+	//	case GLYPH_RANGE_Japanese:          _glyphRange = io.Fonts->GetGlyphRangesJapanese(); break;
+	//	case GLYPH_RANGE_Korean:            _glyphRange = io.Fonts->GetGlyphRangesKorean(); break;
+	//	case GLYPH_RANGE_Thai:              _glyphRange = io.Fonts->GetGlyphRangesThai(); break;
+	//	default:                            _glyphRange = io.Fonts->GetGlyphRangesDefault();
+	//}
+
+	//ImFontConfig config;
+	//config.MergeMode = true;
+	//ImFont *_font = io.Fonts->AddFontFromFileTTF(_chrFont, _FLOAT(_size), &config, _glyphRange);
+	//io.Fonts->AddFontFromFileTTF("misc\\fonts\\EmojiOneColor-SVGinOT.ttf", 18.0f, &config, icons_ranges);
+	//io.Fonts->Build();
+
+	return _font;
+}
+
 
 

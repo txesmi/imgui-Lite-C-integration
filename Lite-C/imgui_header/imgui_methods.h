@@ -1,4 +1,3 @@
-//imgui_dll_popup.cpp
 var imgui_begin_popup_modals(char *name);
 var imgui_begin_popup_modals_params(char *name, void *p_open, long flags);
 void imgui_close_current_popup();
