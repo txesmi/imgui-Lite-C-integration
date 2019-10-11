@@ -168,7 +168,7 @@ void *stFileBrowser () {
 							imgui_same_line();
 						else
 							_column = 0;
-						str_cat(strBrowserPath, _strT); // copy the current decompodited member to the full path
+						str_cat(strBrowserPath, _strT); // copy the current decomposited member to the full path
 						if(imgui_h_button(_strT->chars, 0, 0)) {
 							// Set the new current path
 							imgui_h_get_folder_content_U(fcBrowser->root, strBrowserPath->chars, fileBrowserBuffer, FILE_BROWSER_BUFFER_SIZE, strFileFilter->chars, strFolderIcon->chars);
@@ -278,8 +278,7 @@ void fcBrowserInit () {
 	utf8 *_pathUTF8 = imgui_h_get_current_path_U();
 //	utf8 *_pathUTF8 = imgui_h_get_known_folder_path_U(FOLDERID_Documents);
 	if(_pathUTF8 == NULL) {
-		printf("unable to retrieve current path");
-//		printf("unable to retrieve 'My Documents' folder path");
+		printf("unable to retrieve path");
 		sys_exit(NULL);
 		return;
 	} else {
