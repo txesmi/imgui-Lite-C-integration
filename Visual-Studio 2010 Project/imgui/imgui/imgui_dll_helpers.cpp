@@ -96,7 +96,7 @@ DLLFUNC utf8 *imgui_h_get_current_path_U() {
 	return _uPath;
 }
 
-DLLFUNC utf8 *imgui_h_get_path_root_U(utf8 *_uPath) {
+DLLFUNC utf8 *imgui_h_get_path_filename_U(utf8 *_uPath) {
 	fs::path _path = fs::u8path(_uPath);
 	static utf8 _strPath[UTF8_MAX];
 	const std::string _filename = _path.filename().u8string();

@@ -95,7 +95,7 @@ void txtBrowserPathDecompose (utf8 *_path) {
 		for(; _strT>_strL; _strT-=1)
 			*_strT = *(_strT - 1);
 		*_strT = _str0;
-		str_cpy(_str0, imgui_h_get_path_root_U(strT->chars));
+		str_cpy(_str0, imgui_h_get_path_filename_U(strT->chars));
 		_length = minv(str_len(_str0) + 1, _length);
 		str_trunc(strT, _length);
 	}
@@ -215,6 +215,7 @@ void *stFileBrowser () {
 				}
 				imgui_pop_item_width();
 				
+				// ----- SELECT BUTTON -----
 				// Build the selection button, only activated when the selected item is a file
 				if(_listIndex >= 0) {
 					if(imgui_h_button("Select", _width, 0)) {
@@ -233,7 +234,6 @@ void *stFileBrowser () {
 				if(imgui_is_any_item_hoverd())
 					mouse_pointer = 1;
 				
-				imgui_text(*txtFolderTree->pstring);
 #ifdef _DEBUG_FILEBROWSER_DATA		
 				imgui_text(fcBrowser->root);
 				imgui_text(fcBrowser->folder);
@@ -285,20 +285,10 @@ void fcBrowserInit () {
 	} else {
 		strRootUTF8 = str_create(_pathUTF8);
 	}
-	
 
 	strFolderUTF8 = str_create("My game");
 	
-	str_cpy(strT, strRootUTF8);
-	str_cat(strT, "\\");
-	str_cat(strT, strFolderUTF8);
-	if(!imgui_h_path_exists_U(strT->chars)) {
-		if(!imgui_h_create_folder_U(strT->chars)) {
-			printf("Unable to create saving folder");
-			sys_exit(NULL);
-			return;
-		}
-	}
+	folderTreeBuild (strRootUTF8, strFolderUTF8);
 	
 	
 	fcBrowser = (FOLDER_CONTENT*)fileBrowserBuffer; // A tricky cast that allows a straight access to the addresses of the buffer
@@ -314,11 +304,8 @@ void fcBrowserInit () {
 	imgui_add_ttf_from_file_ranged(_chrFont1, 24, GLYPH_RANGE_Cyrillic);
 //	imgui_add_ttf_from_file(_chrFont1, 24, GLYPH_RANGE_Cyrillic);
 	
-sys_marker("I04");
 	
 	nCurrentDriveSet ();
-	
-sys_marker("I05");
 	
 }
 

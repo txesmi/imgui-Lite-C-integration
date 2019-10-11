@@ -47,7 +47,7 @@ utf8 *           imgui_h_get_current_path_U ();
 
 void             imgui_h_set_current_path_U (utf8 *_uPath);
 
-utf8 *           imgui_h_get_path_root_U (utf8 *_uPath);
+utf8 *           imgui_h_get_path_filename_U (utf8 *_uPath);
 
 #define FOLDERID_Documents                0
 #define FOLDERID_ProgramData              1
