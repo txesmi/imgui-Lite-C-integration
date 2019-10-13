@@ -18,6 +18,7 @@ namespace imgui_helpers {
 		utf8 *root;
 		utf8 *folder;
 		int count;
+		int folderCount;
 		utf8 *content;
 	} FolderContent;
 
@@ -40,12 +41,38 @@ DLLFUNC var imgui_h_calc_item_width() {
 	return _VAR(_f);
 }
 
+DLLFUNC var imgui_h_button_unactive(char *label, var width, var height)
+{
+	ImGuiStyle& style = ImGui::GetStyle(); 
+	ImGui::PushStyleColor(ImGuiCol_Text, style.Colors[ImGuiCol_Border]);
+	ImGui::PushStyleColor(ImGuiCol_Button, style.Colors[ImGuiCol_FrameBg]);
+	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, style.Colors[ImGuiCol_FrameBg]);
+	ImGui::PushStyleColor(ImGuiCol_ButtonActive, style.Colors[ImGuiCol_FrameBg]);
+	bool ret = ImGui::Button(label, ImVec2(_FLOAT(width), _FLOAT(height)));
+	ImGui::PopStyleColor(4);
+	return ret;
+}
+
+DLLFUNC var imgui_h_TEXT_list_box (const char* label, int* current_item, bool(*items_getter)(void*, int, const char**), void* data, int items_count, int height_in_items) {
+	bool res = ImGui::ListBox(label, current_item, items_getter, data, items_count, height_in_items);
+	return res ? _VAR(1) : _VAR(0);
+}
+
+DLLFUNC void imgui_h_text_add_string(TEXT *_txt) {
+	txt_addstring(_txt, (char*)str_create("my new string"));
+}
 // ---------------------------------------------------------------------------------------------------------------------------
 
-DLLFUNC imgui_helpers::utf8 *imgui_h_unicode_to_utf8(imgui_helpers::unicode *_text, int _size) {
-	static imgui_helpers::utf8 _utf8Text[UTF8_MAX_PATH];
-	WideCharToMultiByte(CP_UTF8, NULL, _text, -1, _utf8Text, UTF8_MAX_PATH, NULL, NULL);
-	return _utf8Text;
+DLLFUNC imgui_helpers::utf8 *imgui_h_unicode_to_utf8(imgui_helpers::unicode *_wText) {
+	static imgui_helpers::utf8 _uText[UTF8_MAX_PATH];
+	WideCharToMultiByte(CP_UTF8, NULL, _wText, -1, _uText, UTF8_MAX_PATH, NULL, NULL);
+	return _uText;
+}
+
+DLLFUNC imgui_helpers::unicode *imgui_h_unicode_for_utf8(imgui_helpers::utf8 *_uText) {
+	static imgui_helpers::unicode _wText[UTF8_MAX_PATH];
+	MultiByteToWideChar(CP_UTF8, MB_PRECOMPOSED, _uText, -1, _wText, UTF8_MAX_PATH);
+	return _wText;
 }
 
 DLLFUNC long imgui_h_get_logical_drives() {
@@ -170,7 +197,7 @@ DLLFUNC var imgui_h_get_folder_content_U(imgui_helpers::utf8 *_uRoot, imgui_help
 	imgui_helpers::utf8 **_uList = &_fc->content;
 	int _injSize = _strInjection.size();
 	int _filterSize = _strFilter.size();
-
+	_fc->folderCount = 0;
 	for (const fs::directory_entry& _p : fs::directory_iterator(_fullPath)) {
 		const fs::path& _path = _p.path();
 
@@ -198,20 +225,13 @@ DLLFUNC var imgui_h_get_folder_content_U(imgui_helpers::utf8 *_uRoot, imgui_help
 				if ((unsigned long)_uText <= (unsigned long)_uList)
 					return NULL;
 				memcpy(_uText, _strInjection.c_str(), _injSize);
-				imgui_helpers::utf8 **_uL2 = _uList;
-				for (; _uL2 > &_fc->content; _uL2 -= 1) {
-					int _i = 0;
-					for (; _i < _injSize; _i += 1)
-						if (*(*(_uL2 - 1) + _i) != *(_uText + _i))
-							break;
-					if (_i == _injSize)
-						break;
-					*_uL2 = *(_uL2 - 1);
-				}
-				*_uL2 = _uText;
-			} else {
-				*_uList = _uText;
 			}
+			imgui_helpers::utf8 **_uL = _uList;
+			imgui_helpers::utf8 **_uLLast = &_fc->content + _fc->folderCount;
+			for (; _uL > _uLLast; _uL -= 1)
+				*_uL = *(_uL - 1);
+			*_uL = _uText;
+			_fc->folderCount += 1;
 		} else {
 			*_uList = _uText;
 		}

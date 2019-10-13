@@ -1,3 +1,5 @@
+#ifndef _IMGUI_HELPERS_H_
+#define _IMGUI_HELPERS_H_
 
 typedef void ImFont;
 typedef char utf8;
@@ -20,31 +22,41 @@ typedef short unicode;
 // Add a font with an ImGui standard glyph range
 ImFont *         imgui_add_ttf_from_file(char *_chrFont, var _size, var _glyphRange);
 
-// choppy custom glyph range implemented for test purpouses
-ImFont *         imgui_add_ttf_from_file_ranged(char *_chrFont, var _size, var _glyphRangeID);
-
 void             imgui_push_font(ImFont *_font);
 
 void             imgui_pop_font();
+
+// choppy custom glyph range implemented for test purpouses
+ImFont *         imgui_add_ttf_from_file_ranged(char *_chrFont, var _size, var _glyphRangeID);
 
 
 // imgui_helpers.ccp
 
 var              imgui_h_button(char *label, var sizeX, var sizeY);
 
+var              imgui_h_button_unactive(char *label, var sizeX, var sizeY);
+
 var              imgui_h_calc_item_width();
+
+
+var              imgui_h_TEXT_list_box (char* label, int* current_item, void *items_getter, void* data, int items_count, int height_in_items);
+
+void             imgui_h_text_add_string(TEXT *_txt);
+
+
 
 // HELPERS
 // ------------------------------------------------------------------------------------------------------
 
-#define UNICODE_MAX                       520
-#define FOLDER_ICON                       0xEEA081
-#define FOLDER_ICON_SIZE                  3
+#define UNICODE_MAX                       520 // (MAX_PATH * 2)
 
 // Convert an unicode character set to an UTF8 encoded one
-utf8 *           imgui_h_unicode_to_utf8 (unicode *_uText, int _size);
+utf8 *           imgui_h_unicode_to_utf8 (unicode *_wText);
 
-// An straight implementation of WINAPI GetLogicalDrives() which crashes on engines implementation
+// Convert an UTF8 character set to an unicode encoded one
+unicode *        imgui_h_unicode_for_utf8 (utf8 *_uText);
+
+// An straight implementation of WINAPI GetLogicalDrives() which crashes on engines implementation XP
 long             imgui_h_get_logical_drives ();
 
 // Get the program execution path in UTF8
@@ -84,10 +96,12 @@ typedef struct FOLDER_CONTENT {
 	utf8 *root;
 	utf8 *folder;
 	int count;
-	utf8 **content;
+	int folderCount;
+	utf8 *content;
 } FOLDER_CONTENT;
 
 // Get the content of a folder, formatted to be used in a imgui list box
 var              imgui_h_get_folder_content_U (utf8 *_root, utf8 *_folder, BYTE *_buffer, int _bufferSize, utf8 *_filter, utf8 *_folderInjection);
 
 
+#endif

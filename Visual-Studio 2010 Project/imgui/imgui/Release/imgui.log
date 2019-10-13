@@ -1,9 +1,7 @@
 ﻿  imgui_dll_helpers.cpp
      Creando biblioteca G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.lib y objeto G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.exp
   Generando código
-  0 of 2200 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  All 2204 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Generación de código finalizada
   imgui.vcxproj -> G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll
   G:\visual studio\imgui-Lite-C\Visual-Studio 2010 Project\imgui\Release\imgui.dll -> G:\3D Game Studio\1 proyectos\2dIsland-imgui\imgui.dll

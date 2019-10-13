@@ -1,10 +1,5 @@
 #include "dllmain.h"
 
-#include <experimental/filesystem>
-#include <filesystem>
-
-namespace fs = std::experimental::filesystem;
-
 namespace imgui_fonts {
 	enum GLYPH_RANGE {
 		GLYPH_RANGE_Default,
@@ -63,7 +58,7 @@ DLLFUNC ImFont *imgui_add_ttf_from_file_ranged(char *_chrFont, var _size, var _g
 		case imgui_fonts::GLYPH_RANGE_Japanese:          _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesJapanese()); break;
 		case imgui_fonts::GLYPH_RANGE_Korean:            _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesKorean()); break;
 		case imgui_fonts::GLYPH_RANGE_Thai:              _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesThai()); break;
-		default:                            _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesDefault());
+		default:                                         _rangeBuilder.AddRanges(io.Fonts->GetGlyphRangesDefault());
 	}
 	_rangeBuilder.AddChar(0xE801);                               // Add a specific character
 
