@@ -27,7 +27,8 @@ void             imgui_push_font(ImFont *_font);
 void             imgui_pop_font();
 
 // choppy custom glyph range implemented for test purpouses
-ImFont *         imgui_add_ttf_from_file_ranged(char *_chrFont, var _size, var _glyphRangeID);
+//ImFont *         imgui_add_ttf_from_file_ranged(char *_chrFont, var _size, var _glyphRangeID, var _offX, var _offY);
+ImFont *         imgui_add_ttf_from_file_ranged(char *_chrFont, var _size, short *_ranges);
 
 
 // imgui_helpers.ccp
@@ -39,10 +40,12 @@ var              imgui_h_button_unactive(char *label, var sizeX, var sizeY);
 var              imgui_h_calc_item_width();
 
 
-var              imgui_h_TEXT_list_box (char* label, int* current_item, void *items_getter, void* data, int items_count, int height_in_items);
+var              imgui_h_getter_list_box (char* label, int* current_item, void *items_getter, void* data, int items_count, int height_in_items, int scrool_to_item);
 
-void             imgui_h_text_add_string(TEXT *_txt);
 
+var              imgui_h_get_scroll_y();
+
+var              imgui_h_set_scroll_y(var _pos);
 
 
 // HELPERS
@@ -72,7 +75,8 @@ utf8 *           imgui_h_get_path_filename_U (utf8 *_uPath);
 #define FOLDERID_ProgramData              1
 #define FOLDERID_LocalAppData             2
 #define FOLDERID_SavedGames               3
-#define FOLDERID_COUNT                    4
+#define FOLDERID_Games                    4
+#define FOLDERID_COUNT                    5
 
 // An indexed implementation of WINAPI SHGetKnownFolderPath
 utf8 *           imgui_h_get_known_folder_path_U (var _id);
@@ -92,6 +96,8 @@ var              imgui_h_path_is_folder_U (utf8 *_uPath);
 // Create a folder
 var              imgui_h_create_folder_U (utf8 *_uPath);
 
+// ------------------------------------------------------------------------------------------------------
+
 typedef struct FOLDER_CONTENT {
 	utf8 *root;
 	utf8 *folder;
@@ -102,6 +108,15 @@ typedef struct FOLDER_CONTENT {
 
 // Get the content of a folder, formatted to be used in a imgui list box
 var              imgui_h_get_folder_content_U (utf8 *_root, utf8 *_folder, BYTE *_buffer, int _bufferSize, utf8 *_filter, utf8 *_folderInjection);
+
+
+
+
+// ------------------------------------------------------------------------------------------------------
+
+var              imgui_h_get_folder_content_text (var _hdlText, STRING *_uRoot, STRING *_uFolder, STRING *_filter, STRING *_folderInjection, STRING *_fileInjection);
+
+void             imgui_h_folder_content_text_remove (var _hdlText);
 
 
 #endif
